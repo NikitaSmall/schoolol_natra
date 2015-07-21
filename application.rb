@@ -1,6 +1,8 @@
 require "rubygems"
 require "bundler/setup"
 require "sinatra"
+require "slim"
+
 require File.join(File.dirname(__FILE__), "environment")
 
 configure do
@@ -18,6 +20,5 @@ end
 
 # root page
 get "/" do
-  @profiles = Profile.all
-  erb :profiles
+  slim :index
 end

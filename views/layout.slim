@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title Школоло
+    link(rel='stylesheet' href='/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet' href='/style.css')
+  body
+    .content
+      .col-md-10.col-md-offset-1
+        == yield
+
+    script(src='/bootstrap/js/bootstrap.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+
