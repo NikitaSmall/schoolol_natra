@@ -16,8 +16,8 @@ ENV["DATABASE_URL"] = 'mysql://root:toor@localhost/school_natra'
 
 configure do
   SiteConfig = OpenStruct.new(
-      :title => 'Your Application Name',
-      :author => 'Your Name',
+      :title => 'School Natra',
+      :author => 'nikitasmall',
       :url_base => 'http://localhost:4567/'
   )
 
