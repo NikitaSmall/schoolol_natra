@@ -5,4 +5,4 @@ log/*
 *.swp
 *.swo
 .env
-./idea
+.idea
