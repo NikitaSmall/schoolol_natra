@@ -8,6 +8,8 @@ require 'dm-aggregates'
 require 'dm-migrations'
 require 'ostruct'
 
+require "slim"
+
 require 'sinatra' unless defined?(Sinatra)
 
 Dotenv.load

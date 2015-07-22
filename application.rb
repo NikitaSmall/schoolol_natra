@@ -1,7 +1,8 @@
 require "rubygems"
 require "bundler/setup"
 require "sinatra"
-require "slim"
+
+require "sinatra/reloader"
 
 require File.join(File.dirname(__FILE__), "environment")
 
@@ -20,5 +21,5 @@ end
 
 # root page
 get "/" do
-  slim :index
+  slim :index, locals: { name: 'nikitasmall' }
 end
