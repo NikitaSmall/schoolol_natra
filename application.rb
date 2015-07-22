@@ -21,7 +21,8 @@ end
 
 # root page
 get "/" do
-  slim :index, locals: { name: 'nikita' }
+  @products = Product.all
+  slim :index, locals: { name: 'nikita', products: @products }
 end
 
 get "/products/create" do

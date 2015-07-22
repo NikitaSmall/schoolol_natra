@@ -2,16 +2,16 @@ h1 Создайте новую классную тетрадь!
 
 - if defined? errors
   .alert.alert-danger
-  - errors.each do |error|
-     == error
+    - errors.each do |error|
+      == error
 
 form(method="post" action="/products" class="form")
   .form-group
     label Название
-    input(type="text" class="form-control" name="product[title]" placeholder="Название" required="true")
+    input(type="text" class="form-control" name="product[title]" placeholder="Название" required="true" value=product.title)
 
   .form-group
     label Описание
-    textarea(class="form-control" name="product[description]" placeholder="Описание")
+    textarea(class="form-control" name="product[description]" placeholder="Описание") = product.description
 
   input(type="submit" value="Создать!" class="btn btn-success")

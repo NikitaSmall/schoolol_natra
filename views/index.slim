@@ -1,4 +1,16 @@
-h1 Hello there
 .panel.panel-success
-  .panel-heading="Hooray, #{name}!"
-  .panel-body Bootstrap successfully installed
+  .panel-heading="Привет, школьник!"
+  .panel-body
+    | Добро пожаловать в наш отличный магазин,
+    | где ты сам сможешь создать тетрадь себе по вкусу.
+- unless products.empty?
+  h2 Посмотри на наши замечательные тетрадки:
+  - products.each do |product|
+    .media
+      .media-body
+        h4.media-heading = product.title
+        = product.description
+- else
+  h2 Их пока нет, но ты уже можешь их создать!
+
+a(href="/products/create" class="btn btn-success") Добавить свою офигительную тетрадочку!
