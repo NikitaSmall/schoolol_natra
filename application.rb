@@ -12,6 +12,11 @@ require File.join(File.dirname(__FILE__), "routes/products")
 
 class SchoolApp < Sinatra::Base
 
+  use Rack::Session::Cookie,
+      key: 'rack.session',
+      expire_after: 2592000,
+      secret: 'nikitacrab'
+
   configure do
     set :views, "#{File.dirname(__FILE__)}/views"
     set :show_exceptions, :after_handler
@@ -22,7 +27,9 @@ class SchoolApp < Sinatra::Base
   end
 
   helpers do
-    # add your helpers here
+    def cart
+      session[:cart]
+    end
   end
 
   # registered routes for root page

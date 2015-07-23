@@ -14,11 +14,6 @@ require 'sinatra' unless defined?(Sinatra)
 
 Dotenv.load
 
-use Rack::Session::Cookie,
-    key: 'rack.session',
-    expire_after: 2592000,
-    secret: 'nikitacrab'
-
 ENV["DATABASE_URL"] = 'mysql://root:toor@localhost/school_natra'
 
 configure do

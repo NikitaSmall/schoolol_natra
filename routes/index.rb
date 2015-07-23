@@ -4,10 +4,12 @@ module Sinatra
       module Index
 
         def self.registered(app)
-          app.get "/" do
+          main_page = lambda do
             @products = Product.all
             slim :index, locals: { name: 'nikita', products: @products }
           end
+
+          app.get "/", &main_page
         end
 
       end

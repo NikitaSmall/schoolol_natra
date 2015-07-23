@@ -10,7 +10,15 @@
       .media-body
         h4.media-heading = product.title
         = product.description
+        form(method="post" action="/products/add/#{product.id}")
+          input(type="submit" value="Добавить в корзину" class="btn btn-info")
 - else
   h2 Их пока нет, но ты уже можешь их создать!
+
+
+- unless cart.nil?
+  - cart.each do |id, count|
+    = "#{id} - #{count}"
+
 
 a(href="/products/create" class="btn btn-success") Добавить свою офигительную тетрадочку!
