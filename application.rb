@@ -9,6 +9,7 @@ require File.join(File.dirname(__FILE__), "environment")
 
 require File.join(File.dirname(__FILE__), "routes/index")
 require File.join(File.dirname(__FILE__), "routes/products")
+require File.join(File.dirname(__FILE__), "routes/orders")
 
 class SchoolApp < Sinatra::Base
 
@@ -27,6 +28,7 @@ class SchoolApp < Sinatra::Base
   end
 
   helpers do
+    # helper to quick access to cart in session in view
     def cart
       session[:cart]
     end
@@ -37,4 +39,7 @@ class SchoolApp < Sinatra::Base
 
   # registered routes for products
   register Sinatra::SchoolApp::Routing::Products
+
+  # registered routes for orders
+  register Sinatra::SchoolApp::Routing::Orders
 end
