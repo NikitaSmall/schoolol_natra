@@ -2,3 +2,5 @@
   - products.each do |product|
     p = product.title
     p = product.count
+    form(method="post" action="/products/remove/#{product.id}")
+      input(type="submit" class="btn btn-alert" value="+")
