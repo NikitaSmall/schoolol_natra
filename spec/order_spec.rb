@@ -11,6 +11,16 @@ describe 'Order' do
 
   it 'is not valid' do
     not_valid_order = Order.new
+
     expect(not_valid_order).to_not be_valid
+  end
+
+  # test for correct cart recover
+  it 'should return actual cart' do
+    Product.create id: 1, title: 'Best Sell Ever!!!'
+    products = Order.get_cart({ 1 => 2 })
+
+    expect(products.first.title).to eq('Best Sell Ever!!!')
+    expect(products.first.count).to eq(2)
   end
 end

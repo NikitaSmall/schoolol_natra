@@ -6,7 +6,7 @@ module Sinatra
         def self.registered(app)
           create_form = lambda do
             @product = Product.new
-            slim :"products/create", locals: { product: @product }
+            slim :'products/create', locals: { product: @product }
           end
 
           create_product = lambda do
@@ -15,7 +15,7 @@ module Sinatra
             if @product.save
               redirect '/'
             else
-              slim :"products/create", locals: { product: @product, errors: @product.errors }
+              slim :'products/create', locals: { product: @product, errors: @product.errors }
             end
           end
 
