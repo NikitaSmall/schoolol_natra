@@ -23,4 +23,15 @@ describe 'Order' do
     expect(products.first.title).to eq('Best Sell Ever!!!')
     expect(products.first.count).to eq(2)
   end
+
+  # test for checkout
+  it 'should checkout the user' do
+    Product.create id: 1, title: 'Best Sell Ever!!!', price: 10
+    products = Order.get_cart({ 1 => 2 })
+
+    @order.create_purchases(products)
+
+    expect(@order.total_price).to eq 20
+    expect(Purchase.first.order).to eq @order
+  end
 end
