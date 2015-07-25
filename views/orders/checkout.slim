@@ -1,0 +1,17 @@
+h1 Оформите свой заказ!
+
+- if defined? errors
+  .alert.alert-danger
+    - errors.each do |error|
+      == error
+
+form(method="post" action="/checkout" class="form")
+  .form-group
+    label Имя
+    input(type="text" class="form-control" name="order[name]" placeholder="Имя" required="true" value=order.name)
+
+  .form-group
+    label Телефон
+    textarea(class="form-control" name="order[phone]" placeholder="Телефон") = order.phone
+
+  input(type="submit" value="Создать!" class="btn btn-success")

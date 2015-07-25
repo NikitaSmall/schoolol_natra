@@ -23,15 +23,14 @@ module Sinatra
             session[:cart] ||= Hash.new(0) # try to initialize new cart
             session[:cart][params[:id]] += 1 # count of line_items
 
-
             redirect '/'
           end
 
           decrease_product_count_at_cart = lambda do
             redirect '/cart' if session[:cart].nil?
 
-            session[:cart][params[:id]] -= 1
-            session[:cart].delete_if { |id, count| count <= 0 }
+            session[:cart][params[:id]] -= 1 # count of line_items
+            session[:cart].delete_if { |id, count| count <= 0 } # destroy key-value if count of line items is zero
 
             redirect '/cart'
           end

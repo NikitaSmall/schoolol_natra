@@ -3,7 +3,10 @@ class Purchase
 
   property :id, Serial
   property :price, Float
-  property :quantity, Integer
+  property :count, Integer
+
+  property :created_at, DateTime
+  property :updated_at, DateTime
 
   belongs_to :order
   belongs_to :product

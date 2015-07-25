@@ -2,7 +2,7 @@ require "#{File.dirname(__FILE__)}/spec_helper"
 
 describe 'product' do
   before(:each) do
-    @product = Product.new(title: 'product')
+    @product = Product.new(title: 'product', price: 10)
     @product.save
   end
 
@@ -17,6 +17,11 @@ describe 'product' do
 
   it 'is not uniqueness' do
     not_valid_product = Product.new(title: 'product')
+    expect(not_valid_product).to_not be_valid
+  end
+
+  it 'has extremely low price' do
+    not_valid_product = Product.new(title: 'product', price: -5)
     expect(not_valid_product).to_not be_valid
   end
 end

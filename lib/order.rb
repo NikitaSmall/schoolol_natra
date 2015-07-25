@@ -5,7 +5,7 @@ class Order
 
   property :name, String
   property :phone, String
-  property :total_price, Float
+  property :total_price, Float, default: 0
 
   property :note, Text
   property :paid, Boolean, default: false
@@ -27,5 +27,14 @@ class Order
     end
 
     products
+  end
+
+  def create_purchases(products)
+    # iterate through the products to create purchases for current order
+    products.each do |product|
+      Purchase.create(price: product.price, count: product.count, order_id: self.id, product_id: product.id)
+      self.total_price += product.price * product.count # summ total price for current order
+    end
+    save
   end
 end
