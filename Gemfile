@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem 'sinatra-contrib'
 
+gem 'rack-flash3' # flash data
+gem 'sinatra-redirect-with-flash' # with redirects
+
 gem 'json', '>= 1.8.3'
 gem 'dotenv'
 gem 'rake'

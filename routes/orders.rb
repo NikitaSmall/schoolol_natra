@@ -5,13 +5,18 @@ module Sinatra
 
         def self.registered(app)
           checkout_form = lambda do
-            redirect '/' if session[:cart].nil? # or session[:cart].length <= 0
+            if session[:cart].nil? # or session[:cart].length <= 0
+              flash[:notice] = 'Ваша корзина пуста!'
+              redirect '/'
+            end
 
             @order = Order.new
             slim :'orders/checkout', locals: { order: @order }
           end
 
           register_order = lambda do
+            redirect '/', notice: 'Ваша корзина пуста!' if session[:cart].nil? # or session[:cart].length <= 0
+
             @order = Order.new params[:order]
             products = Order.get_cart(session[:cart])
 

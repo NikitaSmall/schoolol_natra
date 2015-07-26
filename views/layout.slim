@@ -7,6 +7,10 @@ html
   body
     .content
       .col-md-10.col-md-offset-1
+        - unless notice.nil?
+          .panel.panel-info
+            .panel-body
+              = flash[:notice]
         == yield
 
     script(src='/bootstrap/js/bootstrap.min.js')

@@ -3,6 +3,9 @@ require "bundler/setup"
 require "sinatra"
 require "sinatra/base"
 
+require 'rack-flash'
+require 'sinatra/redirect_with_flash'
+
 require "sinatra/reloader"
 
 require File.join(File.dirname(__FILE__), "environment")
@@ -19,6 +22,8 @@ class SchoolApp < Sinatra::Base
       expire_after: 2592000,
       secret: 'nikitacrab'
 
+  use Rack::Flash
+
   configure do
     set :views, "#{File.dirname(__FILE__)}/views"
     set :show_exceptions, :after_handler
@@ -32,6 +37,10 @@ class SchoolApp < Sinatra::Base
     # helper to quick access to cart in session in view
     def cart
       session[:cart]
+    end
+
+    def notice
+      flash[:notice]
     end
   end
 
