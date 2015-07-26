@@ -4,19 +4,14 @@ module Sinatra
       module Orders
 
         def self.registered(app)
-          show_cart = lambda do
-            @products = Order.get_cart(session[:cart])
-            slim :'orders/cart', locals: { products: @products }
-          end
-
           checkout_form = lambda do
+            redirect '/' if session[:cart].nil? # or session[:cart].length <= 0
+
             @order = Order.new
             slim :'orders/checkout', locals: { order: @order }
           end
 
           register_order = lambda do
-            redirect '/' if session[:cart].nil? # or session[:cart].length <= 0
-
             @order = Order.new params[:order]
             products = Order.get_cart(session[:cart])
 
@@ -31,7 +26,6 @@ module Sinatra
 
           end
 
-          app.get '/cart', &show_cart
           app.get '/checkout', &checkout_form
           app.post '/checkout', &register_order
         end
