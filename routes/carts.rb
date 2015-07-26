@@ -27,7 +27,14 @@ module Sinatra
             slim :'carts/cart', locals: { products: @products }
           end
 
+          empty_cart = lambda do
+            session[:cart] = nil # make cart empty
+            redirect '/'
+          end
+
           app.get '/cart', &show_cart
+
+          app.post '/cart/empty', &empty_cart
 
           app.post "/products/add/:id", &add_product_to_cart
           app.post "/products/remove/:id", &decrease_product_count_at_cart

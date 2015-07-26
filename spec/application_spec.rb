@@ -12,5 +12,15 @@ describe 'main application' do
     expect(last_response).to be_ok
   end
 
+  it 'should protect from empty checkout' do
+    get '/checkout'
+    expect(last_response).to be_redirect
+  end
+
+  it 'should show checkout page' do
+    get '/checkout', {}, 'rack.session' => { :cart => { 1 => 2 } } # this is a session true name for tests
+    expect(last_response).to be_ok
+  end
+
   it 'should have more specs'
 end
