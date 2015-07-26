@@ -13,6 +13,7 @@ module Sinatra
             @product = Product.new(params[:product])
 
             if @product.save
+              flash[:notice] = 'Только что Вы создали замечательный товар!'
               redirect '/'
             else
               slim :'products/create', locals: { product: @product, errors: @product.errors }

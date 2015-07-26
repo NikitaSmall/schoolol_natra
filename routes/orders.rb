@@ -15,7 +15,10 @@ module Sinatra
           end
 
           register_order = lambda do
-            redirect '/', notice: 'Ваша корзина пуста!' if session[:cart].nil? # or session[:cart].length <= 0
+            if session[:cart].nil? # or session[:cart].length <= 0
+              flash[:notice] = 'Ваша корзина пуста!'
+              redirect '/'
+            end
 
             @order = Order.new params[:order]
             products = Order.get_cart(session[:cart])
@@ -24,6 +27,7 @@ module Sinatra
               @order.create_purchases(products)
               session[:cart] = nil # destroy cart
 
+              flash[:notice] = 'Заказ успешно оформлен!'
               redirect '/'
             else
               slim :'orders/checkout', locals: { order: @order, errors: @order.errors }
