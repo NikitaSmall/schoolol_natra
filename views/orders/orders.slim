@@ -1,0 +1,5 @@
+- if orders.count > 0
+  ul.list-group
+    - orders.each do |order|
+      li.list-group-item
+        | Заказчик: #{order.name} на сумму #{order.total_price} от #{order.created_at.strftime('%Y-%m-%d %H:%M')}

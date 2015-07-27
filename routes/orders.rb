@@ -35,8 +35,15 @@ module Sinatra
 
           end
 
+          orders = lambda do
+            @orders = Order.all
+            slim :'orders/orders', locals: { orders: @orders }
+          end
+
           app.get '/checkout', &checkout_form
           app.post '/checkout', &register_order
+
+          app.get '/orders', &orders
         end
 
       end
