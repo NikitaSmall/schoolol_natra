@@ -40,10 +40,16 @@ module Sinatra
             slim :'orders/orders', locals: { orders: @orders }
           end
 
+          show_order = lambda do
+            @order = Order.get(params[:id])
+            slim :'orders/show', locals: { order: @order }
+          end
+
           app.get '/checkout', &checkout_form
           app.post '/checkout', &register_order
 
           app.get '/orders', &orders
+          app.get '/orders/:id', &show_order
         end
 
       end

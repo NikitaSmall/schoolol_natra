@@ -1,0 +1,13 @@
+.panel
+  .panel-body
+    | Имя заказчика: #{order.name}
+    br
+    | Телефон: #{order.phone}
+    br
+    | Сумма заказа: #{order.total_price}
+
+    h3 Товары в заказе:
+    ul.list-group
+      - order.purchases.each do |purchase|
+        li.list-group-item
+          | #{purchase.product.title}, #{purchase.price} x #{purchase.count}
