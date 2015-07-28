@@ -37,8 +37,8 @@ class SchoolApp < Sinatra::Base
     # helpers to provide auth
     def protected!
       return if authorized?
-      headers['WWW-Authenticate'] = 'Basic realm="Введите пароль администратора"'
-      halt 401, "Not authorized\n"
+      headers['WWW-Authenticate'] = 'Basic realm="Speak, friend, and enter"'
+      halt 401, "The Balrog of Morgoth! You shall not pass!\n"
     end
 
     def authorized?

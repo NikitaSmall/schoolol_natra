@@ -35,6 +35,8 @@ module Sinatra
 
           end
 
+          # routes that protected from anon
+
           orders = lambda do
             protected! # helper that require admin to login
 
@@ -43,12 +45,16 @@ module Sinatra
           end
 
           show_order = lambda do
+            protected! # helper that require admin to login
+
             @order = Order.get(params[:id])
             slim :'orders/show', locals: { order: @order }
           end
 
           app.get '/checkout', &checkout_form
           app.post '/checkout', &register_order
+
+          # routes that protected from anon
 
           app.get '/orders', &orders
           app.get '/orders/:id', &show_order
