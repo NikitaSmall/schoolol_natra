@@ -22,5 +22,22 @@ describe 'main application' do
     expect(last_response).to be_ok
   end
 
+  it 'should block unauthorized user' do
+    get '/orders'
+    expect(last_response.status).to eq(401)
+  end
+
+  it 'should block bad credentials user' do
+    authorize 'rohallor', 'galop!'
+    get '/orders'
+    expect(last_response.status).to eq(401)
+  end
+
+  it 'should pass authorized user' do
+    authorize 'admin', 'admin'
+    get '/orders'
+    expect(last_response.status).to eq(200)
+  end
+
   it 'should have more specs'
 end
