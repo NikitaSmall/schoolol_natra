@@ -29,9 +29,7 @@ module Sinatra
 
           empty_cart = lambda do
             session[:cart] = nil # make cart empty
-
-            flash[:notice] = 'Ваша корзина очищена!'
-            redirect '/'
+            redirect_with_notice '/', 'Ваша корзина очищена!'
           end
 
           app.get '/cart', &show_cart

@@ -46,6 +46,12 @@ class SchoolApp < Sinatra::Base
       @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['admin', 'admin']
     end
 
+    # helper for more easily redirect and beauty code
+    def redirect_with_notice(url, notice)
+      flash[:notice] = notice
+      redirect url
+    end
+
     # helper to quick access to cart in session in view
     def cart
       session[:cart]

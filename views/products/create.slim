@@ -11,6 +11,10 @@ form(method="post" action="/products" class="form")
     input(type="text" class="form-control" name="product[title]" placeholder="Название" required="true" value=product.title)
 
   .form-group
+    label Цена
+    input(type="text" class="form-control" name="product[price]" placeholder="Цена" required="true" value=product.price)
+
+  .form-group
     label Описание
     textarea(class="form-control" name="product[description]" placeholder="Описание") = product.description
 
