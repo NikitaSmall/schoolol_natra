@@ -36,6 +36,8 @@ module Sinatra
           end
 
           orders = lambda do
+            protected! # helper that require admin to login
+
             @orders = Order.all
             slim :'orders/orders', locals: { orders: @orders }
           end

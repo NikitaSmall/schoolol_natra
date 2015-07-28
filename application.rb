@@ -34,11 +34,24 @@ class SchoolApp < Sinatra::Base
   end
 
   helpers do
+    # helpers to provide auth
+    def protected!
+      return if authorized?
+      headers['WWW-Authenticate'] = 'Basic realm="Введите пароль администратора"'
+      halt 401, "Not authorized\n"
+    end
+
+    def authorized?
+      @auth ||=  Rack::Auth::Basic::Request.new(request.env)
+      @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['admin', 'admin']
+    end
+
     # helper to quick access to cart in session in view
     def cart
       session[:cart]
     end
 
+    # helper to show notices at main layout
     def notice
       flash[:notice]
     end
