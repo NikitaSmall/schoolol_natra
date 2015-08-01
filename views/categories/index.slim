@@ -1,0 +1,11 @@
+- unless categories.nil? || categories.empty?
+  h2 Посмотри на наши замечательные тетрадки:
+  - categories.each do |category|
+    .media
+      .media-body
+        h4.media-heading = category.title
+        = category.description
+- else
+  h2 Их пока нет, но ты уже можешь их создать!
+
+a(href="/categories/create" class="btn btn-success") Добавить свою офигительную категорию!

@@ -14,6 +14,8 @@ class Product
 
   has n, :purchases
 
+  belongs_to :category
+
   validates_presence_of :title, message: 'Название необходимо заполнить!'
   validates_uniqueness_of :title, message: 'Название должно быть уникальным! Выберите другое название.'
 

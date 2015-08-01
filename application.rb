@@ -14,6 +14,7 @@ require File.join(File.dirname(__FILE__), "routes/index")
 require File.join(File.dirname(__FILE__), "routes/products")
 require File.join(File.dirname(__FILE__), "routes/orders")
 require File.join(File.dirname(__FILE__), "routes/carts")
+require File.join(File.dirname(__FILE__), "routes/categories")
 
 class SchoolApp < Sinatra::Base
 
@@ -68,6 +69,9 @@ class SchoolApp < Sinatra::Base
 
   # registered routes for products
   register Sinatra::SchoolApp::Routing::Products
+
+  # registered routes for categories
+  register Sinatra::SchoolApp::Routing::Categories
 
   # registered routes for orders
   register Sinatra::SchoolApp::Routing::Orders
