@@ -12,7 +12,7 @@ class Category
   has n, :products
 
   validates_presence_of :title, message: 'Название должно присутствовать'
-  validates_uniqueness_of :titls, message: 'Название должно быть уникальным'
+  validates_uniqueness_of :title, message: 'Название должно быть уникальным'
 
   validates_presence_of :base_price, message: 'Базовая цена должна присутствовать'
   validates_numericality_of :base_price, min: 0, message: 'Базовая цена должна быть больше нуля'

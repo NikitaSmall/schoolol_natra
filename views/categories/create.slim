@@ -1,0 +1,21 @@
+h1 Создайте новую классную категорию!
+
+- if defined? errors
+  .alert.alert-danger
+    - errors.each do |error|
+      == error
+
+form(method="post" action="/categories" class="form")
+  .form-group
+    label Название
+    input(type="text" class="form-control" name="category[title]" placeholder="Название" required="true" value=category.title)
+
+  .form-group
+    label Цена
+    input(type="number" class="form-control" name="category[base_price]" placeholder="Базовая цена" required="true" value=category.base_price)
+
+  .form-group
+    label Описание
+    textarea(class="form-control" name="category[description]" placeholder="Описание") = category.description
+
+  input(type="submit" value="Создать!" class="btn btn-success")
