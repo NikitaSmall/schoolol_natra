@@ -19,6 +19,6 @@ class Product
   validates_presence_of :title, message: 'Название необходимо заполнить!'
   validates_uniqueness_of :title, message: 'Название должно быть уникальным! Выберите другое название.'
 
-  validates_presence_of :price, message: 'Цена должна быть указана!'
-  validates_numericality_of :price, min: 0, message: 'Цена должна быть больше нуля!'
+  # validates_presence_of :price, message: 'Цена должна быть указана!'
+  # validates_numericality_of :price, min: 0, message: 'Цена должна быть больше нуля!'
 end
