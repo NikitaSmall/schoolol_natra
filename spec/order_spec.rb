@@ -17,8 +17,9 @@ describe 'Order' do
 
   # test for correct cart recover
   it 'should return actual cart' do
-    Product.create id: 1, title: 'Best Sell Ever!!!', price: 10
-    products = Order.get_cart({ 1 => 2 })
+    Category.create(title: 'category', id: 1, base_price: 15)
+    @product = Product.create(title: 'Best Sell Ever!!!', category_id: 1, id: 1)
+    products = Order.get_cart({ @product.id => 2 })
 
     expect(products.first.title).to eq('Best Sell Ever!!!')
     expect(products.first.count).to eq(2)
@@ -26,12 +27,13 @@ describe 'Order' do
 
   # test for checkout
   it 'should checkout the user' do
-    Product.create id: 1, title: 'Best Sell Ever!!!', price: 10
-    products = Order.get_cart({ 1 => 2 })
+    Category.create(title: 'category', id: 1, base_price: 15)
+    @product = Product.create(title: 'product', category_id: 1, id: 1)
+    products = Order.get_cart({ @product.id => 2 })
 
     @order.create_purchases(products)
 
-    expect(@order.total_price).to eq 20
+    expect(@order.total_price).to eq 30
     expect(Purchase.first.order).to eq @order
   end
 end

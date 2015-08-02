@@ -2,7 +2,8 @@ require "#{File.dirname(__FILE__)}/spec_helper"
 
 describe 'product' do
   before(:each) do
-    @product = Product.new(title: 'product', price: 10)
+    Category.create(title: 'category', id: 1, base_price: 15)
+    @product = Product.new(title: 'product', category_id: 1)
     @product.save
   end
 
@@ -24,4 +25,6 @@ describe 'product' do
     not_valid_product = Product.new(title: 'product', price: -5)
     expect(not_valid_product).to_not be_valid
   end
+
+
 end

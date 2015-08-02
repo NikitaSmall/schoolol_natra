@@ -16,9 +16,16 @@ class Product
 
   belongs_to :category
 
+  before :create, :set_price_from_category
+
   validates_presence_of :title, message: 'Название необходимо заполнить!'
   validates_uniqueness_of :title, message: 'Название должно быть уникальным! Выберите другое название.'
 
   # validates_presence_of :price, message: 'Цена должна быть указана!'
   # validates_numericality_of :price, min: 0, message: 'Цена должна быть больше нуля!'
+
+  protected
+  def set_price_from_category
+    self.price = category.base_price
+  end
 end
