@@ -64,6 +64,11 @@ class SchoolApp < Sinatra::Base
     end
   end
 
+  # error handling
+  not_found do
+    slim 'h1 Your path is blocked!'
+  end
+
   # registered routes for root page
   register Sinatra::SchoolApp::Routing::Index
 

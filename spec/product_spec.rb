@@ -25,6 +25,4 @@ describe 'product' do
     not_valid_product = Product.new(title: 'product', price: -5)
     expect(not_valid_product).to_not be_valid
   end
-
-
 end
