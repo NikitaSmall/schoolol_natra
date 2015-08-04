@@ -40,7 +40,7 @@ module Sinatra
           show_order = lambda do
             protected! # helper that require admin to login
 
-            @order = Order.get(params[:id])
+            @order = Order.get(params[:id]) || halt(404)
             slim :'orders/show', locals: { order: @order }
           end
 
