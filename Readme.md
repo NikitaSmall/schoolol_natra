@@ -11,4 +11,3 @@ Actually, it is shop with self-service, where you create a product for your own 
 - Slim
 - Rspec
 - CarrierWave (in progress)
-- other cool titles
