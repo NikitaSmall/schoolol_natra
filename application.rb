@@ -44,7 +44,8 @@ class SchoolApp < Sinatra::Base
 
     def authorized?
       @auth ||=  Rack::Auth::Basic::Request.new(request.env)
-      @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['admin', 'admin']
+      @auth.provided? && @auth.basic? &&
+        @auth.credentials && @auth.credentials == ['admin', 'admin']
     end
 
     # helper for more easily redirect and beauty code
