@@ -21,9 +21,11 @@ module Sinatra
             @category = Category.new(params[:category])
 
             if @category.save
-              redirect_with_notice '/categories', 'Только что Вы создали замечательную категорию!'
+              redirect_with_notice '/categories',
+                'Только что Вы создали замечательную категорию!'
             else
-              slim :'categories/create', locals: { category: @category, errors: @category.errors }
+              slim :'categories/create',
+                locals: { category: @category, errors: @category.errors }
             end
           end
 
